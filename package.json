@@ -1,0 +1,13 @@
+{
+    "name": "@procube-open/docusaurus-template",
+    "version": "1.0.0",
+    "description": "Docusaurus for Template",
+    "repository": "https://github.com/procube-open/docusaurus-template",
+    "author": "Naoya Nakakawaji <naoya@procube.jp>",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "root"
+    ]
+}

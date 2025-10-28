@@ -1,0 +1,22 @@
+{
+    "name": "@procube-open/docusaurus-template-root",
+    "version": "1.0.0",
+    "description": "Document root for [Enter Title Here]",
+    "repository": "https://github.com/nec-dis/document-root",
+    "author": "Naoya Nakakawaji <naoya@procube.jp>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "clear-doc": "docusaurus-template clear && rm -rf .docusaurus-template",
+        "build-doc": "docusaurus-template build --out-dir ../build",
+        "start-doc": "docusaurus-template start"
+    },
+    "workspaces": [
+        "packages/*",
+        "root"
+    ],
+    "dependencies": {
+        "@procube-open/docusaurus-template": "*",
+        "@docusaurus/tsconfig": "^3.8.1"
+    }
+}
