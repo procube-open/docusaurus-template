@@ -76,7 +76,7 @@ Codespaces での使用が前提。.npmrc は git に登録されないので、
   "version": "1.0.0",
   "description": "Dummy for docusaurus",
   "repository": "https://github.com/procube-open/idm-v3",
-  "author": "Mitsuru Nakakawaji <mitsuru@procube.jp>",
+  "author": "Naoya Nakakawaji <naoya@procube.jp>",
   "private": true,
   "scripts": {
     "clear-doc": "docusaurus-template clear",
