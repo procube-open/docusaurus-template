@@ -13,7 +13,7 @@
 1. ターミナルから、rename_package.py スクリプトを実行し、パッケージ名を変更します。
 
    ```bash
-   python3 rename_package.py
+   python3 scripts/rename_package.py
    ```
 
 1. ドキュメントなどで使われるタイトル、レポジトリの組織名、リポジトリ名を入力して下さい。
@@ -36,5 +36,20 @@ Variables:
 - `TARGET_REPOS`: ドキュメントを取得する外部リポジトリの一覧（スペース区切り）
 - `CNAME`: GitHub Pagesで利用するカスタムドメイン名（必須ではない）
 
+### Ditaからの移行手順
 
+1. DITA OTを利用して、DITAドキュメントをMarkdown形式でエクスポートします。
+   ```
+   mkdir docs
+   dita --input=src/Manual/IDManagerV2.ditamap --format=markdown_github --output=docs
+   ```
+1. 開発コンテナのターミナルで、reorganize_docs.pyスクリプトを実行します。
+   ```
+   python3 scripts/reorganize_docs.py --docs-dir docs
+   ```
+1. Docusaurusサーバーを起動し、ドキュメントを確認します。
+   ```
+   npm run start-doc
+   ```
 
+スクリプトの詳細については、`scripts/README.md`を参照してください。
