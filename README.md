@@ -23,6 +23,12 @@
 
 Github Pages を有効化するには、リポジトリの Settings > Pages に移動し、Source を `gh-pages` ブランチに設定します。
 
+
+### docs.zip　のリリース
+
+ドキュメントを外部レポジトリから取得する場合、外部レポジトリ上でdocs.zipをリリースする必要があります。
+docs.zipの作成手順については、`packages/docusaurus/README.md`の「3. docs.zip の作成」を参照してください。
+
 ### 外部リポジトリからのドキュメント取得
 
 外部レポジトリにリリースされたdocs.zipを取得するには、リポジトリ設定画面の Secrets and variables > Actions に以下のシークレットを登録してください。
