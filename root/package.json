@@ -16,7 +16,7 @@
         "root"
     ],
     "dependencies": {
-        "@procube-open/docusaurus-template": "*",
-        "@docusaurus/tsconfig": "^3.8.1"
+        "@docusaurus/tsconfig": "^3.9.2",
+        "@procube-open/docusaurus-template": "*"
     }
 }

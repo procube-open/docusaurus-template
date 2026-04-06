@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs"
+import { join } from "node:path"
 import { themes as prismThemes } from "prism-react-renderer"
 import type { Config, PresetConfig } from "@docusaurus/types"
 import type * as Preset from "@docusaurus/preset-classic"
@@ -28,6 +30,7 @@ const originalItems: Array<NavbarItem> = [
 
 // sidebars のキーのリストを取得
 const sidebarIds = Object.keys(sidebars)
+const openApiPath = join(process.env.OPS_FRONTIER_PROJECT_ROOT || process.cwd(), "openapi")
 
 // sidebarId が sidebars に含まれるものだけをフィルタリング
 const filteredItems = originalItems.filter((item) => {
@@ -38,6 +41,40 @@ const filteredItems = originalItems.filter((item) => {
 })
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+const classicPreset = [
+    "@docusaurus/preset-classic",
+    {
+        docs: {
+            path: process.env.OPS_FRONTIER_DOCS_PATH || "docs",
+            sidebarPath: "./sidebars.ts",
+            remarkPlugins: [[simplePlantUML, { baseUrl: "https://www.plantuml.com/plantuml/svg" }]],
+            // _で始まるファイルも通常のドキュメントとして扱う
+            exclude: [],
+        },
+        blog: false,
+        theme: {
+            customCss: "./src/css/custom.css",
+        },
+    },
+] satisfies PresetConfig
+
+const presets: Config["presets"] = [classicPreset]
+
+if (existsSync(openApiPath)) {
+    presets.push([
+        "redocusaurus",
+        {
+            openapi: {
+                path: openApiPath,
+                routeBasePath: "/api",
+            },
+            theme: {
+                primaryColor: "#1890ff",
+            },
+        },
+    ] satisfies Redocusaurus.PresetEntry)
+}
 
 const config: Config = {
     title: "[Enter Title Here]",
@@ -66,48 +103,7 @@ const config: Config = {
         locales: ["ja"],
     },
 
-    // カスタムフィールドでビルド時刻を埋め込み
-    customFields: {
-        buildDate: process.env.BUILD_DATE || new Date().toISOString(),
-    },
-    markdown: {
-        mermaid: true,
-    },
-    themes: ["@docusaurus/theme-mermaid"],
-    presets: [
-        [
-            "@docusaurus/preset-classic",
-            {
-                docs: {
-                    path: process.env.OPS_FRONTIER_DOCS_PATH || "docs",
-                    sidebarPath: "./sidebars.ts",
-                    remarkPlugins: [[simplePlantUML, { baseUrl: "https://www.plantuml.com/plantuml/svg" }]],
-                    // _で始まるファイルも通常のドキュメントとして扱う
-                    exclude: [],
-                },
-                blog: false,
-                theme: {
-                    customCss: "./src/css/custom.css",
-                },
-            },
-        ],
-        // Redocusaurus config
-        [
-            "redocusaurus",
-            {
-                openapi: {
-                    // Folder to scan for *.openapi.yaml files
-                    path: "../openapi",
-                    routeBasePath: "/api",
-                },
-                // Theme Options for modifying how redoc renders them
-                theme: {
-                    // Change with your site colors
-                    primaryColor: "#1890ff",
-                },
-            },
-        ] satisfies Redocusaurus.PresetEntry,
-    ],
+    presets,
 
     themeConfig: {
         // Replace with your project's social card

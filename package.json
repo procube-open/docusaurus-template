@@ -6,6 +6,12 @@
     "author": "Naoya Nakakawaji <naoya@procube.jp>",
     "license": "MIT",
     "private": true,
+    "overrides": {
+        "serialize-javascript": "7.0.5"
+    },
+    "devDependencies": {
+        "serialize-javascript": "7.0.5"
+    },
     "workspaces": [
         "packages/*",
         "root"

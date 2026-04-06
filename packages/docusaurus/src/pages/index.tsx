@@ -1,7 +1,5 @@
-import type { ReactNode } from "react"
 import { useEffect } from "react"
 import clsx from "clsx"
-import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import Layout from "@theme/Layout"
 import Heading from "@theme/Heading"
@@ -167,17 +165,6 @@ export default function Home(): React.JSX.Element {
     const { siteConfig } = useDocusaurusContext()
     const LayoutComponent = Layout as any
 
-    // DocusaurusのcustomFieldsからビルド時刻を取得
-    const buildDate = (siteConfig.customFields?.buildDate as string) || new Date().toISOString()
-    const formattedBuildDate = new Date(buildDate).toLocaleString("ja-JP", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "Asia/Tokyo",
-    })
-
     // useEffectでアニメーションを開始
     useEffect(() => {
         const cleanup = animateChipin()
@@ -188,7 +175,6 @@ export default function Home(): React.JSX.Element {
         <LayoutComponent title={`${siteConfig.title}`} description="Description will go into a meta tag in <head />">
             <HomepageHeader />
             <main>
-                {/* <img src="/img/docusaurus-template.drawio.svg" alt="[Enter Title Here]" className={styles.bousaiImage} /> */}
                 {descriptionSection}
             </main>
         </LayoutComponent>

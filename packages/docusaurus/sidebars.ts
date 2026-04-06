@@ -1,9 +1,11 @@
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs"
+import * as docusaurusLoggerModule from "@docusaurus/logger"
 import { existsSync } from "node:fs"
 import path from "node:path"
-import { logger } from "@docusaurus/logger"
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+const logger = docusaurusLoggerModule.logger ?? docusaurusLoggerModule.default ?? docusaurusLoggerModule
 
 /**
  * Creating a sidebar enables you to:
